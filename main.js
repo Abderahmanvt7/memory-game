@@ -121,11 +121,11 @@ function endGame(end){
     if(end === "success"){
         clearInterval(timeInterval);
         popup.innerHTML = `<br> <br>You're grade is: ${120 - time - localStorage.getItem("player_score")}`;
-        popupText = document.createTextNode(`Congratulation, You're finish the game in ${120-time} secondes`);
+        popupText = document.createTextNode(`Congratulation, you win the game with ${localStorage.getItem("player_score")} wrong tries`);
     }  else {
         clearInterval(timeInterval);
         popup.innerHTML = `<br> <br>You're grade is: 0`;
-        popupText = document.createTextNode(`Sorry, The game over you're exploite the full time`);
+        popupText = document.createTextNode(`Sorry, The game over, please try again`);
     }
     popup.insertBefore(popupText, popup.firstElementChild);
 
@@ -175,8 +175,6 @@ let playerInfo = {};
 pName = localStorage.getItem("player_name");
 pScore = localStorage.getItem("player_score");
 
-console.log(pName);
-console.log(pScore);
 
 myHistory = localStorage.getItem("history");
 // if the locla storage was reseted myHistory become null
@@ -197,6 +195,7 @@ myHistory = localStorage.getItem("history");
 let players = Object.entries(playerInfo);
 gameHistory.innerHTML = "Game history:<br>";
 players.forEach( player => {
+
     gameHistory.innerHTML += `<span> ${player[0]}:<span> ${player[1]} <br>`;
 });
 
